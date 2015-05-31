@@ -146,6 +146,8 @@ class Animation(pygame.sprite.Sprite):
         if not self.spriteCooldown:
             self.spriteCooldown=self.speed
             self.currentSprite+=1
+            if self.surrentSprite==len(self.sprites):
+                self.currentSprite=0
             self.image=self.sprites[self.currentSprite]
         self.duration-=1
         if not self.duration:
