@@ -1,5 +1,6 @@
 from Game import *
 def main():
+    RAINBOW=RED
     meleeList=pygame.sprite.Group()
     wallList=pygame.sprite.Group()
     itemList=pygame.sprite.Group()
@@ -87,7 +88,7 @@ def main():
             screen.blit(playerImage,(5,5))
             pygame.draw.rect(screen,RED,(76,2,70,70))
             pygame.draw.rect(screen,BLUE,(150,2,70,70))
-            screen.blit(player.meleeWeapon.sprite,(79,5))
+            screen.blit(player.meleeWeapon.sprite,(79,5)) # FIX PROJECTILE MOVEMENT
             screen.blit(player.rangedWeapon.sprite,(153,5))
             if any(player.effects):
                 unused=0
@@ -145,7 +146,7 @@ def main():
             enemyList.update()
             for enemy in enemyList:
                 if onScreen(enemy):
-                    enemy.ai(wallList,player,enemyList,weaponLists,screen)
+                    enemy.ai(wallList,player,weaponLists,screen)
             doorList.update(player)
             weaponLists[0].update(weaponLists,enemyList,player,wallList)
             weaponLists[1].update(weaponLists,enemyList,player,wallList)
@@ -165,13 +166,15 @@ def main():
             pygame.draw.rect(screen,BLACK,(501,495,203,31))
             pygame.draw.rect(screen,BLACK,(501,530,203,31))
             pygame.draw.rect(screen,BLACK,(501,565,203,31))
-            pygame.draw.rect(screen,BLUE,(340,510,70,70))
-            screen.blit(player.rangedWeapon.sprite,(343,513))
             pygame.draw.rect(screen,getColour(player.hp/player.maxHp),(504,498,player.hp/player.maxHp*197,25))
             if player.meleeClass:
                 pygame.draw.rect(screen,RED,(504,533,(player.meleeWeapon.speed-player.meleeAttackCooldown)/player.meleeWeapon.speed*197,25))
+                pygame.draw.rect(screen,RED,(260,510,70,70))
+                screen.blit(player.meleeWeapon.sprite,(263,513))    
             if player.rangedClass:
                 pygame.draw.rect(screen,BLUE,(504,568,(player.rangedWeapon.speed-player.rangedAttackCooldown)/player.rangedWeapon.speed*197,25))
+                pygame.draw.rect(screen,BLUE,(340,510,70,70))
+                screen.blit(player.rangedWeapon.sprite,(343,513))
             screen.blit(hpTitle,(465,495))
             screen.blit(meleeTitle,(440,530))
             screen.blit(rangedTitle,(430,565))
