@@ -88,7 +88,7 @@ def main():
             screen.blit(playerImage,(5,5))
             pygame.draw.rect(screen,RED,(76,2,70,70))
             pygame.draw.rect(screen,BLUE,(150,2,70,70))
-            screen.blit(player.meleeWeapon.sprite,(79,5)) # FIX PROJECTILE MOVEMENT
+            screen.blit(player.meleeWeapon.sprite,(79,5))
             screen.blit(player.rangedWeapon.sprite,(153,5))
             if any(player.effects):
                 unused=0
